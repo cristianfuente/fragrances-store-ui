@@ -1,0 +1,20 @@
+<div class="fragrance-grid">
+  <div *ngFor="let frag of fragrances()" class="fragrance-card">
+    <img [src]="frag.sizes[0].imageUrl" alt="{{ frag.name }}" />
+    <h3>{{ frag.name }}</h3>
+    <p class="price">
+      <strong>Desde:</strong>
+      {{ frag.sizes[0].price | currency : "COP" : "symbol" }}
+    </p>
+  </div>
+</div>
+
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="page() === 0">
+    <i class="material-icons">chevron_left</i>
+  </button>
+  <span>Página {{ page() + 1 }} de {{ totalPages() }}</span>
+  <button (click)="nextPage()" [disabled]="page() + 1 >= totalPages()">
+    <i class="material-icons">chevron_right</i>
+  </button>
+</div>
