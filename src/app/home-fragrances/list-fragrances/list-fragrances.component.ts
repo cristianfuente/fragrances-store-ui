@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CatalogParameter } from '../../models/catalog.parameter.model';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-list-fragrances',
@@ -59,7 +60,7 @@ export class ListFragrancesComponent implements OnChanges {
     };
 
     this.http
-      .post<any>('http://localhost:8080/fragrances', body)
+      .post<any>(`${environment.apiUrl}/fragrances`, body)
       .subscribe((response) => {
         this.fragrances.set(response.data);
         this.totalPages.set(response.totalPages);

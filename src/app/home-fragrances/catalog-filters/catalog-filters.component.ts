@@ -3,6 +3,7 @@ import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { Catalog } from '../../models/catalog.model';
 import { CatalogParameter } from '../../models/catalog.parameter.model';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-catalog-filters',
@@ -19,7 +20,7 @@ export class CatalogFiltersComponent {
 
   constructor(private readonly http: HttpClient) {
     this.http
-      .get<Catalog[]>('http://localhost:8080/catalogs')
+      .get<Catalog[]>(`${environment.apiUrl}/catalogs`)
       .subscribe((res) => {
         this.catalogs = res;
       });
