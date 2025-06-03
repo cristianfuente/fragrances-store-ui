@@ -1,0 +1,40 @@
+.filters {
+    padding: 1rem 0;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .filter-group {
+    margin-bottom: 1.5rem;
+  
+    h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li {
+        margin-bottom: 0.4rem;
+  
+        .filter-option {
+          background: none;
+          border: none;
+          padding: 0;
+          font-size: 0.9rem;
+          color: #444;
+          cursor: pointer;
+          text-align: left;
+  
+          &:hover {
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+  

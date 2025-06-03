@@ -1,0 +1,16 @@
+<div class="filters">
+    <div *ngFor="let catalog of catalogs" class="filter-group">
+      <h4>{{ catalog.name }}</h4>
+      <ul>
+        <li *ngFor="let param of catalog.parameters">
+          <button
+            class="filter-option"
+            [class.selected]="isSelected(param)"
+            (click)="toggleParameter(param)">
+            {{ param.name }}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  

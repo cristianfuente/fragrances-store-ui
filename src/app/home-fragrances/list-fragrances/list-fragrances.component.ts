@@ -1,7 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CatalogParameter } from '../../models/catalog.parameter.model';
 
 @Component({
   selector: 'app-list-fragrances',
@@ -10,28 +17,41 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './list-fragrances.component.html',
   styleUrl: './list-fragrances.component.scss',
 })
-export class ListFragrancesComponent implements OnChanges{
+export class ListFragrancesComponent implements OnChanges {
   @Input() searchText: string = '';
+  @Input() filtersInput: { id: number; name: string }[] = [];
 
   fragrances = signal<any[]>([]);
   page = signal(0);
   totalPages = signal(0);
-  filters = signal<{ id: number; name: string }[]>([]);
+  filters = signal<CatalogParameter[]>([]);
   readonly pageSize = 10;
 
   constructor(private readonly http: HttpClient) {
     this.loadFragrances();
   }
   ngOnChanges(changes: SimpleChanges): void {
+    let shouldReload = false;
+
     if (changes['searchText']) {
       this.page.set(0);
+      shouldReload = true;
+    }
+
+    if (changes['filtersInput']) {
+      this.filters.set(this.filtersInput);
+      this.page.set(0);
+      shouldReload = true;
+    }
+
+    if (shouldReload) {
       this.loadFragrances();
     }
   }
 
   loadFragrances() {
     const body = {
-      filters: this.filters(), 
+      filters: this.filters(),
       searchText: this.searchText,
       page: this.page(),
       size: this.pageSize,

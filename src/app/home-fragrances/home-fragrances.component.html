@@ -1,4 +1,26 @@
 <app-header (search)="updateSearch($event)"></app-header>
-<div class="container">
-    <app-list-fragrances [searchText]="searchText()"></app-list-fragrances>
+
+<div class="main-layout">
+  <app-catalog-filters
+    (toggleFilter)="updateFilters($event)"
+  ></app-catalog-filters>
+
+  <div class="content-area">
+    <div class="active-filters">
+      <span
+        class="filter-chip"
+        *ngFor="let filtro of selectedFilters()"
+        (click)="removeFilter(filtro)"
+      >
+        {{ filtro.name }} ×
+      </span>
+    </div>
+
+    <div class="container-list">
+      <app-list-fragrances
+        [searchText]="searchText()"
+        [filtersInput]="selectedFilters()"
+      ></app-list-fragrances>
+    </div>
+  </div>
 </div>
