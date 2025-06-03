@@ -1,0 +1,41 @@
+name: Deploy JS to FTP
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build Angular project (production)
+      run: npx ng build --configuration production
+
+    - name: Deploy Angular build to public_html (preserving PHP and vendor)
+      uses: SamKirkland/FTP-Deploy-Action@v4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./dist/fragances-store-ui/browser/
+        server-dir: /public_html/
+        delete: true
+        exclude: |
+          vendor/**
+          composer.json
+          composer.lock
+          **/*.php
+
