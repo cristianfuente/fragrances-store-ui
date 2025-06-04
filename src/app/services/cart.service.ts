@@ -1,16 +1,25 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CartItem } from '../models/card.item.model';
+import { CartItem } from '../models/cart.item.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private items = new BehaviorSubject<CartItem[]>([]);
+  private items = new BehaviorSubject<CartItem[]>(this.loadFromStorage());
   cartItems$ = this.items.asObservable();
 
   get currentItems(): CartItem[] {
     return this.items.value;
+  }
+
+  private loadFromStorage(): CartItem[] {
+    const data = localStorage.getItem('cart');
+    return data ? JSON.parse(data) : [];
+  }
+  
+  private saveToStorage(items: CartItem[]) {
+    localStorage.setItem('cart', JSON.stringify(items));
   }
 
   addToCart(item: CartItem) {
@@ -26,9 +35,18 @@ export class CartService {
       : [...this.currentItems, item];
 
     this.items.next(updatedItems);
+    this.saveToStorage(updatedItems); 
   }
 
   getTotalQuantity(): number {
     return this.currentItems.reduce((sum, item) => sum + item.quantity, 0);
   }
+
+  removeItem(item: CartItem) {
+    const current = this.items.value;
+    const updated = current.filter(p => !(p.id === item.id && p.sizeId === item.sizeId));
+    this.items.next(updated);
+    this.saveToStorage(updated); 
+  }
+  
 }

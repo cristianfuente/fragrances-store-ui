@@ -4,5 +4,6 @@ export interface CartItem {
     quantity: number;
     sizeId: number;
     price: number;
+    sizeLabel: string;
     imageUrl: string;
   }

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CartItem } from '../models/card.item.model';
 import { CartService } from '../services/cart.service';
+import { CartItem } from '../models/cart.item.model';
 
 @Component({
   selector: 'app-fragance-detail',
@@ -35,6 +35,8 @@ export class FraganceDetailComponent {
       quantity: this.quantity,
       sizeId: this.selectedFragrance.sizes[this.selectedSizeIndex].sizeId,
       price: this.selectedFragrance.sizes[this.selectedSizeIndex].price,
+      sizeLabel: this.selectedFragrance.sizes[this.selectedSizeIndex].size + ' ' 
+      + this.selectedFragrance.sizes[this.selectedSizeIndex].unit,
       imageUrl: this.selectedFragrance.sizes[this.selectedSizeIndex].imageUrl
     };
   

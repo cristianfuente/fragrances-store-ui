@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CartService } from '../../services/cart.service';
 
@@ -14,6 +14,9 @@ export class HeaderComponent {
   searchValue = '';
   @Output() search = new EventEmitter<string>();
   cartCount = 0;
+
+  @Input() showCart = true;
+  @Input() showSearch = true;
 
   constructor(private readonly cartService: CartService){
     this.cartService.cartItems$.subscribe(items => {

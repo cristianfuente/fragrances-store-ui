@@ -1,0 +1,77 @@
+<app-header [showCart]="false" [showSearch]="false"></app-header>
+
+<div class="checkout-container">
+  <!-- Columna izquierda -->
+  <div class="form-section">
+    <!-- Contacto -->
+    <section class="card-section">
+      <h3>Contacto</h3>
+      <input
+        type="email"
+        placeholder="Correo electrónico"
+        [(ngModel)]="email"
+      />
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="emailConfirmed" />
+        Confirmo que este correo es mío y es correcto...
+      </label>
+    </section>
+
+    <!-- Entrega -->
+    <section class="card-section">
+      <h3>Entrega</h3>
+      <div class="grid-2">
+        <input type="text" placeholder="Nombre" />
+        <input type="text" placeholder="Apellidos" />
+        <input type="text" placeholder="Cédula" />
+        <input type="text" placeholder="Teléfono" />
+        <input type="text" placeholder="Dirección" class="full" />
+        <input
+          type="text"
+          placeholder="Casa, apto... (opcional)"
+          class="full"
+        />
+        <select>
+          <option>Colombia</option>
+        </select>
+        <select>
+          <option>Santander</option>
+        </select>
+        <input type="text" placeholder="Ciudad" />
+        <input type="text" placeholder="Código postal" />
+      </div>
+    </section>
+
+    <!-- Pago -->
+    <section class="card-section">
+      <h3>Pago</h3>
+      <label><input type="radio" name="payment" /> PSE</label>
+      <label><input type="radio" name="payment" /> Bancolombia</label>
+      <label><input type="radio" name="payment" /> Nequi</label>
+    </section>
+
+    <button class="checkout-btn">COMPRAR AHORA</button>
+  </div>
+
+  <!-- Columna derecha: resumen -->
+  <div class="summary-section">
+    <h3>Resumen de compra</h3>
+
+    <div *ngFor="let item of cartItems" class="summary-item">
+      <div class="info">
+        <strong>{{ item.name }}</strong>
+        <div>{{ item.sizeLabel }}</div>
+        <div>
+          <strong>${{ item.price | number : "1.0-0" }}</strong>
+        </div>
+        <div>gola</div>
+      </div>
+      <img [src]="item.imageUrl" alt="{{ item.name }}" />
+      <span class="remove" (click)="removeFromCart(item)">×</span>
+    </div>
+
+    <div class="total">
+      <strong>${{ total | number : "1.0-0" }}</strong> Total
+    </div>
+  </div>
+</div>

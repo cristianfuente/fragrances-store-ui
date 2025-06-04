@@ -7,7 +7,7 @@
           >
         </div>
       
-        <div class="search-section">
+        <div class="search-section" *ngIf="showSearch">
           <div class="search-container">
               <input
                 type="text"
@@ -18,7 +18,7 @@
               <i class="material-icons">search</i>
             </div>
           
-            <div class="cart-icon">
+            <div class="cart-icon" *ngIf="showCart">
               <span class="material-symbols-outlined icon">shopping_cart</span>
               <span *ngIf="cartCount > 0" class="cart-badge roboto-flex-300">{{ cartCount }}</span>
             </div>
