@@ -39,6 +39,20 @@
   }
 
   @media screen and (max-width: 768px) {
-    
+    .filter-group {
+  
+      h4 {
+        font-size: 1.1rem;
+      }
+  
+      ul {
+        li {
+          .filter-option {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
   }
+  
   

@@ -1,9 +1,12 @@
 <app-header (search)="updateSearch($event)"></app-header>
 
 <div class="main-layout">
-  <app-catalog-filters
-    (toggleFilter)="updateFilters($event)"
-  ></app-catalog-filters>
+  
+  <div class="filters">
+    <app-catalog-filters
+      (toggleFilter)="updateFilters($event)"
+    ></app-catalog-filters>
+  </div>
 
   <div class="content-area">
     <div class="active-filters">

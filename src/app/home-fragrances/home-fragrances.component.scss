@@ -1,37 +1,55 @@
 .main-layout {
-    display: flex;
-    padding: 20px;
-    margin: auto;
-  
-    app-catalog-filters {
-      flex: 0 0 200px;
+  display: flex;
+  padding: 20px 60px;
+  margin: auto;
+
+  .filters {
+    flex: 1;
+  }
+
+  .content-area {
+    flex: 3;
+
+    .active-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
-  
-    .content-area {
-      flex: 1;
-  
-      .active-filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-      }
-  
-      .filter-chip {
-        background-color: white;
-        color: #333;
-        padding: 15px;
-        border-radius: 15px;
-        border: 1px solid #E8E8E8;
-        font-weight: 500;
-        font-size: 1.4rem;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-  
-        &:hover {
-          background-color: #e0e0e0;
-        }
+
+    .filter-chip {
+      background-color: white;
+      color: #333;
+      padding: 15px;
+      border-radius: 15px;
+      border: 1px solid #e8e8e8;
+      font-weight: 500;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background-color: #e0e0e0;
       }
     }
   }
-  
+}
+
+@media screen and (max-width: 768px) {
+  .main-layout {
+    padding: 20px;
+    .active-filters {
+      .filter-chip {
+        font-size: 1.2rem;
+      }
+    }
+
+    .filters {
+      flex: 1;
+    }
+
+    .content-area {
+      flex: 2;
+    }
+  }
+}

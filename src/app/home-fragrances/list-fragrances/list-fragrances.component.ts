@@ -20,13 +20,13 @@ import { environment } from '../../environments/environment';
 })
 export class ListFragrancesComponent implements OnChanges {
   @Input() searchText: string = '';
-  @Input() filtersInput: { id: number; name: string }[] = [];
+  @Input() filtersInput: CatalogParameter[] = [];
 
   fragrances = signal<any[]>([]);
   page = signal(0);
   totalPages = signal(0);
   filters = signal<CatalogParameter[]>([]);
-  readonly pageSize = 10;
+  readonly pageSize = 9;
 
   constructor(private readonly http: HttpClient) {
     this.loadFragrances();
