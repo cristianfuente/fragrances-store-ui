@@ -20,7 +20,7 @@
           
             <div class="cart-icon">
               <span class="material-symbols-outlined icon">shopping_cart</span>
-              <span class="cart-badge roboto-flex-300">2</span>
+              <span *ngIf="cartCount > 0" class="cart-badge roboto-flex-300">{{ cartCount }}</span>
             </div>
         </div>
         

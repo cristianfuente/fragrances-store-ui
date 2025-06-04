@@ -29,5 +29,5 @@
   </div>
 </div>
 } @else {
-<app-fragance-detail [selectedFragrance]="selectedFragrance"></app-fragance-detail>
+<app-fragance-detail [selectedFragrance]="selectedFragrance" (onSelectFragrance)="selectedFragrance = null"></app-fragance-detail>
 }
