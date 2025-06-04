@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../layout/header/header.component';
 import { CatalogFiltersComponent } from './catalog-filters/catalog-filters.component';
 import { CatalogParameter } from '../models/catalog.parameter.model';
+import { Fragrance } from '../models/fragrance.model';
+import { FraganceDetailComponent } from '../fragance-detail/fragance-detail.component';
 
 @Component({
   selector: 'app-home-fragrances',
@@ -12,6 +14,7 @@ import { CatalogParameter } from '../models/catalog.parameter.model';
     HeaderComponent,
     ListFragrancesComponent,
     CatalogFiltersComponent,
+    FraganceDetailComponent
   ],
   templateUrl: './home-fragrances.component.html',
   styleUrl: './home-fragrances.component.scss',
@@ -20,9 +23,15 @@ import { CatalogParameter } from '../models/catalog.parameter.model';
 export class HomeFragrancesComponent {
   searchText = signal('');
   selectedFilters = signal<CatalogParameter[]>([]);
+  selectedFragrance: Fragrance | null = null;
 
   updateSearch(value: string) {
     this.searchText.set(value);
+  }
+
+  onSelectFragrance(fragrance: Fragrance){
+    console.log(fragrance);
+    this.selectedFragrance = fragrance;
   }
 
   updateFilters(param: CatalogParameter) {

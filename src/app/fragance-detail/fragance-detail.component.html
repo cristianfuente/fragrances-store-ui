@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="product-detail">
+        <!-- Imagen principal -->
+        <div class="image-container">
+          <img
+            [src]="selectedFragrance.sizes[selectedSizeIndex].imageUrl"
+            [alt]="selectedFragrance.name"
+            class="main-image"
+          />
+        </div>
+      
+        <!-- Info del producto -->
+        <div class="info">
+          <h2>{{ selectedFragrance.name }}</h2>
+          <p>{{ selectedFragrance.parameters[0]?.name }}</p>
+          <h3>{{ selectedFragrance.sizes[selectedSizeIndex]?.price | currency : "COP " : "symbol" }}</h3>
+          <p class="description">{{ selectedFragrance.description }}</p>
+      
+          <!-- Tamaños -->
+          <div class="sizes">
+            <span
+              *ngFor="let size of selectedFragrance.sizes; let i = index"
+              class="size-option"
+              [class.active]="i === selectedSizeIndex"
+              (click)="selectedSizeIndex = i"
+            >
+              {{ size.size }} {{ size.unit }}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+</div>

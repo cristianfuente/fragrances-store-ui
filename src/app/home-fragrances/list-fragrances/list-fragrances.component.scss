@@ -51,30 +51,9 @@
       font-size: 1rem;
     }
   
-    .add-to-cart {
-      background-color: #e91e63;
-      color: white;
-      padding: 0.4rem 1rem;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      font-size: 0.9rem;
-  
-      i {
-        font-size: 18px;
-      }
-  
-      &:hover {
-        background-color: #c2185b;
-      }
-    }
-  
     &:hover {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
     }
   }
   

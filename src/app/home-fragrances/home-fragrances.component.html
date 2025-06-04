@@ -1,7 +1,7 @@
 <app-header (search)="updateSearch($event)"></app-header>
 
+@if (selectedFragrance === null) {
 <div class="main-layout">
-  
   <div class="filters">
     <app-catalog-filters
       (toggleFilter)="updateFilters($event)"
@@ -23,7 +23,11 @@
       <app-list-fragrances
         [searchText]="searchText()"
         [filtersInput]="selectedFilters()"
+        (selectedFragrance)="onSelectFragrance($event)"
       ></app-list-fragrances>
     </div>
   </div>
 </div>
+} @else {
+<app-fragance-detail [selectedFragrance]="selectedFragrance"></app-fragance-detail>
+}
