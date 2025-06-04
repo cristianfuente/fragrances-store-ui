@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { CartItem } from '../models/cart.item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fragance-detail',
@@ -15,7 +16,7 @@ export class FraganceDetailComponent {
   selectedSizeIndex = 0;
   @Output() onSelectFragrance = new EventEmitter();
 
-  constructor(private readonly cartService: CartService){}
+  constructor(private readonly cartService: CartService, private readonly router: Router){}
 
   quantity = 1;
 
@@ -42,6 +43,11 @@ export class FraganceDetailComponent {
   
     this.cartService.addToCart(item);
     this.onSelectFragrance.emit()
+  }
+
+  goToPayment() {
+    this.agregarAlCarrito();
+    this.router.navigate(['/payment']);
   }
   
 }

@@ -18,6 +18,7 @@ export class PaymentFormComponent {
   total = 0;
   email = '';
   emailConfirmed = false;
+  code = '';
 
   paymentMethods: { id: number; name: string }[] = [];
   departamentos: string[] = [];
@@ -116,7 +117,7 @@ export class PaymentFormComponent {
   
     this.http.post<{ code: string }>(`${environment.apiUrl}/order`, orderPayload).subscribe({
       next: (res) => {
-        alert(`Orden creada con código: ${res.code}`);
+        this.code = res.code;
       },
       error: () => alert('Error al crear la orden')
     });
