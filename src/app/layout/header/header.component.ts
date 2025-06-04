@@ -35,4 +35,8 @@ export class HeaderComponent {
   goToPayment() {
     this.router.navigate(['/payment']);
   }
+  
+  goToHome() {
+    this.router.navigate(['/']);
+  }
 }
