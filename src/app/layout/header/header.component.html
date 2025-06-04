@@ -5,8 +5,8 @@
       >CE<span class="highlight">S</span>
     </div>
 
-    <div class="search-section" *ngIf="showSearch">
-      <div class="search-container">
+    <div class="search-section">
+      <div class="search-container" *ngIf="showSearch">
         <input
           type="text"
           [(ngModel)]="searchValue"

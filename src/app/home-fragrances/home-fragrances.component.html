@@ -1,4 +1,4 @@
-<app-header (search)="updateSearch($event)"></app-header>
+<app-header (search)="updateSearch($event)" [showSearch]="selectedFragrance === null"></app-header>
 
 @if (selectedFragrance === null) {
 <div class="main-layout">
