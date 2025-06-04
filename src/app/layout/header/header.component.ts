@@ -37,6 +37,6 @@ export class HeaderComponent {
   }
   
   goToHome() {
-    this.router.navigate(['/']);
+    window.location.href = '/';
   }
 }
