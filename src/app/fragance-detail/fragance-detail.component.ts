@@ -7,11 +7,19 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './fragance-detail.component.html',
   styleUrl: './fragance-detail.component.scss',
-  standalone: true
+  standalone: true,
 })
 export class FraganceDetailComponent {
-
   @Input() selectedFragrance: any;
   selectedSizeIndex = 0;
 
+  quantity = 1;
+
+  increment() {
+    this.quantity++;
+  }
+
+  decrement() {
+    if (this.quantity > 1) this.quantity--;
+  }
 }

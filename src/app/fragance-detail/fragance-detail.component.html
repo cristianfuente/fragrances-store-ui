@@ -16,6 +16,7 @@
           <h3>{{ selectedFragrance.sizes[selectedSizeIndex]?.price | currency : "COP " : "symbol" }}</h3>
           <p class="description">{{ selectedFragrance.description }}</p>
       
+          <span class="info-label-szize">Tamaño</span>
           <!-- Tamaños -->
           <div class="sizes">
             <span
@@ -27,6 +28,25 @@
               {{ size.size }} {{ size.unit }}
             </span>
           </div>
+
+          <div class="quantity-selector">
+            <label for="quantity">Cantidad</label>
+            <div class="quantity-control">
+              <button (click)="decrement()">−</button>
+              <div class="value">{{ quantity }}</div>
+              <button (click)="increment()">+</button>
+            </div>
+          </div>
+
+          <div class="button-group">
+            <button class="buy-button">COMPRAR AHORA</button>
+          
+            <button class="cart-button">
+              <span class="material-symbols-outlined icon">shopping_cart</span>
+              AGREGAR AL CARRITO
+            </button>
+          </div>          
+          
         </div>
       </div>
       
