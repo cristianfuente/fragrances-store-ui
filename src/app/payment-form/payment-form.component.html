@@ -3,9 +3,8 @@
 <div class="checkout-container">
   <!-- Columna izquierda -->
   <div class="form-section">
-    <!-- Contacto -->
+    <h3>Contacto</h3>
     <section class="card-section">
-      <h3>Contacto</h3>
       <input
         type="email"
         placeholder="Correo electrónico"
@@ -13,65 +12,111 @@
       />
       <label class="checkbox">
         <input type="checkbox" [(ngModel)]="emailConfirmed" />
-        Confirmo que este correo es mío y es correcto...
+        Confirmo que este correo electrónico es mío y estoy seguro de que es
+        correcto. Entiendo que no se enviarán notificaciones de confirmación y
+        no podré modificar el correo después de realizar el pago.
       </label>
     </section>
 
-    <!-- Entrega -->
+    <h3>Entrega</h3>
     <section class="card-section">
-      <h3>Entrega</h3>
       <div class="grid-2">
-        <input type="text" placeholder="Nombre" />
-        <input type="text" placeholder="Apellidos" />
-        <input type="text" placeholder="Cédula" />
-        <input type="text" placeholder="Teléfono" />
-        <input type="text" placeholder="Dirección" class="full" />
+        <input type="text" placeholder="Nombre" [(ngModel)]="customer.nombre" />
+        <input
+          type="text"
+          placeholder="Apellidos"
+          [(ngModel)]="customer.apellidos"
+        />
+        <input type="text" placeholder="Cédula" [(ngModel)]="customer.cedula" />
+        <input
+          type="text"
+          placeholder="Teléfono"
+          [(ngModel)]="customer.telefono"
+        />
+        <input
+          type="text"
+          placeholder="Dirección"
+          class="full"
+          [(ngModel)]="customer.direccion"
+        />
         <input
           type="text"
           placeholder="Casa, apto... (opcional)"
           class="full"
+          [(ngModel)]="customer.complemento"
         />
-        <select>
+
+        <select [(ngModel)]="customer.pais" disabled>
           <option>Colombia</option>
         </select>
-        <select>
-          <option>Santander</option>
+
+        <select [(ngModel)]="customer.departamento">
+          <option *ngFor="let dpto of departamentos" [value]="dpto">
+            {{ dpto }}
+          </option>
         </select>
-        <input type="text" placeholder="Ciudad" />
-        <input type="text" placeholder="Código postal" />
+
+        <input type="text" placeholder="Ciudad" [(ngModel)]="customer.ciudad" />
+        <input
+          type="text"
+          placeholder="Código postal"
+          [(ngModel)]="customer.codigoPostal"
+        />
       </div>
     </section>
 
-    <!-- Pago -->
+    <h3>Pago</h3>
     <section class="card-section">
-      <h3>Pago</h3>
-      <label><input type="radio" name="payment" /> PSE</label>
-      <label><input type="radio" name="payment" /> Bancolombia</label>
-      <label><input type="radio" name="payment" /> Nequi</label>
+      <div
+        class="checkbox-item"
+        *ngFor="let method of paymentMethods"
+        (click)="setPaymentMethod(method.name)"
+        [class.active]="paymentMethod === method.name"
+      >
+        <input
+          type="radio"
+          [value]="method.name"
+          name="payment"
+          [checked]="paymentMethod === method.name"
+        />
+        <span>{{ method.name }}</span>
+      </div>
     </section>
 
-    <button class="checkout-btn">COMPRAR AHORA</button>
+    <button class="checkout-btn" (click)="submitOrder()">COMPRAR AHORA</button>
   </div>
 
   <!-- Columna derecha: resumen -->
   <div class="summary-section">
-    <h3>Resumen de compra</h3>
+    <div class="background-bill"></div>
+    <div>
+      <h3>Resumen de compra</h3>
 
-    <div *ngFor="let item of cartItems" class="summary-item">
-      <div class="info">
-        <strong>{{ item.name }}</strong>
-        <div>{{ item.sizeLabel }}</div>
-        <div>
-          <strong>${{ item.price | number : "1.0-0" }}</strong>
+      <div *ngFor="let item of cartItems" class="summary-item">
+        <div class="info">
+          <div class="price-section">
+            <span>{{ item.name }}</span>
+            <span
+              ><strong>Precio: </strong>${{
+                item.price | number : "1.0-0"
+              }}</span
+            >
+          </div>
+
+          <div class="quantity-section">
+            <span class="roboto-flex-300"
+              ><strong>Tamaño: </strong>{{ item.sizeLabel }}</span
+            >
+            <span><strong>Cantidad: </strong>{{ item.quantity }}</span>
+          </div>
         </div>
-        <div>gola</div>
+        <img [src]="item.imageUrl" alt="{{ item.name }}" />
+        <span class="remove" (click)="removeFromCart(item)">×</span>
       </div>
-      <img [src]="item.imageUrl" alt="{{ item.name }}" />
-      <span class="remove" (click)="removeFromCart(item)">×</span>
-    </div>
 
-    <div class="total">
-      <strong>${{ total | number : "1.0-0" }}</strong> Total
+      <div class="total">
+        <strong>${{ total | number : "1.0-0" }}</strong> Total
+      </div>
     </div>
   </div>
 </div>
