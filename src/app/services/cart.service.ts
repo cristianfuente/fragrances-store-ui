@@ -13,6 +13,11 @@ export class CartService {
     return this.items.value;
   }
 
+  clearCart(): void {
+    this.items.next([]);
+    localStorage.removeItem('cart');
+  }
+
   private loadFromStorage(): CartItem[] {
     const data = localStorage.getItem('cart');
     return data ? JSON.parse(data) : [];

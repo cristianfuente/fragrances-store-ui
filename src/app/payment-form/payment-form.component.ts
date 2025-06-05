@@ -119,7 +119,10 @@ export class PaymentFormComponent {
       next: (res) => {
         this.code = res.code;
       },
-      error: () => alert('Error al crear la orden')
+      error: () => alert('Error al crear la orden'),
+      complete:() => {
+        window.location.href = `${environment.apiUrl}/order/payment/${this.code}`
+      }
     });
   }
   
