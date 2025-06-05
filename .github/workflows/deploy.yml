@@ -38,4 +38,5 @@ jobs:
           composer.json
           composer.lock
           **/*.php
+          .htaccess
 

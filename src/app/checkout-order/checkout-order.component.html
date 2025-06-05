@@ -4,18 +4,8 @@
       {{ isApproved ? 'Transacción aprobada' : 'Transacción Rechazada' }}
     </div>
   
-    <div class="card">
-      <h4>📋 Referencia de pago</h4>
-      <p>{{ transactionCode }}</p>
-    </div>
-  
-    <div class="card">
-      <h4>Fecha de pago</h4>
-      <p>{{ formatDate(paymentDate) }}</p>
-  
-      <h4>Detalle de pago</h4>
-      <p>{{ detail }}</p>
-      <p>{{ method }}</p>
-      <p>$ {{ amount | number: '1.0-0' }}</p>
+    <div class="card" *ngIf="isApproved">
+      <h4>📋 Referencia de pago: </h4>
+      <p>#{{ transactionCode }}</p>
     </div>
   </div>
